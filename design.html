@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen"/>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+</head>
+<style>
+  @media print {
+  * {
+      -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+      color-adjust: exact !important;  /*Firefox*/
+    }
+  }
+  
+  </style>
+<body>
+  <center> 
+    <div class="container"  style="margin-top: 2%;">
+    <img src="https://pluspng.com/img-png/png-logo-design-fancy-png-logo-design-91-on-professional-logo-design-with-png-logo-design-734.png"
+     style="width:60px; height:60px "/>
+           <h1 style ="color:#566573;"  >EMPLOYEE IDENTITY CARD FORM</h1></center>
+          </div>
+    <div class="container border p-5" >
+<br><br>
+        <form action="action_page.php">
+          <div class="row">
+            <div class="col-25">
+              <label for="fname"><b>First Name</b> </label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="lname"><b>Last Name </b> </label>
+            </div>
+            <div class="col-75">
+              <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+              <label for="fname"><b>Phone Number</b> </label>
+            </div>
+            <div class="col-75">
+              <input type="number" id="ph" name="ph" placeholder="Your Number.." maxlength="11" required >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="CNIC"><b>Cnic Number</b> </label>
+            </div>
+            <div class="col-75">
+              <input type="number" id="cnic" name="cnic" maxlength="12" placeholder="Your CNIC.." required >
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="fname"><b>Upload Image </b> </label>
+            </div>
+            <div class="col-75">
+              <img id="imageToShow" src="#" height="150" width="120" alt="your image" />
+              <input type="file" name="Photo"  onchange="PreviewImage();" id="Photo" class="form-control">
+              <input type="button" id="save" value="Save" class="btn btn-success mt-2">
+            </div>
+          </div> 
+</div>
+</form>
+<div class="container" id="idcards">
+  <div class="row text-center mt-5">
+      <div class="col-md-12">
+
+          <h2 style="color: #566573 ;">CARD FOR PRINT</h2>
+
+      </div>
+  </div>
+  <div class="row" id="plzPrintMe">
+    <div class="row" id="downloadMe">
+      <div class="col-md-12 mt-5 border p-3 d-flex justify-content-space-between">
+          <div class="col-md-6">
+              
+              <div class="border shadow" class="border solid" style="width: 480px; background-color:#D5F5E3 ; border-radius: 15px;  height:640px; ; background-size:cover;">
+                  
+                  <div class="mt-5 pt-5 text-center">
+                      Your Company Name
+                  </div>
+                  <div class="mt-4 text-center">
+                      
+                      <img id="YourImage"  height="200" width="200" class="rounded-circle mb-3 mt-3" alt=""> <br>
+                      
+                      <label for="">First_Name</label> : <b><span id="Yourfname"></span></b> <br>
+                      <label for="">Last_Name</label> : <b><span id="Yourlname"></span></b> <br>
+                      <label for="">Phone_Number</label> : <b><span id="Yourph"></span></b> <br>
+                      <label for="">CNIC_Number</label> :<b><span id="Yournic"></span></b> <br>
+
+                  </div>
+              </div>
+
+          </div>
+          <div class="col-md-6 ">
+              
+              <div class="border shadow" style="width: 480px; background-color:#D5F5E3 ; border-radius: 15px; height:640px; background-size: contain;">
+                  <div style="margin-top: 300px;" class="text-center">
+
+                      <h3>Card Back</h3>
+
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12 text-center mt-5 mb-5">
+          <button onclick="printDiv('plzPrintMe')" class="btn btn-success"><i class="fa fa-bars"></i> Print</button>
+          <input id="btn-Preview-Image" type="button" class="btn btn-primary" value="Preview"/>
+          <!-- <button id="btndisplay"></button> -->
+  </div>
+</div>
+
+<div id="previewImage">  
+
+  <h4><a id="btn-Convert-Html2Image" href="#">Download</a></h4>
+  <p>Firstly click on preview button! </p>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+$(document).ready( () => {
+          $("#idcards").hide();
+      });
+
+     function showImage(){
+
+         if(this.files && this.files[0])
+
+         {
+             var obj = new FileReader();
+             obj.onload = function(data){
+
+                 var image = document.getElementById("Image");
+                 image.src= data.target.result;
+                 image.style.display = "block";
+             }
+             obj.readAsDataURL(this.files[0]);
+         }
+     }
+     PreviewImage = (img) => {
+
+// console.log("clicked");
+
+var oFReader = new FileReader();
+
+oFReader.readAsDataURL(document.getElementById("Photo").files[0]);
+
+
+oFReader.onload = oFREvent => {
+    document.getElementById("imageToShow").src = oFREvent.target.result;
+};
+};
+     $("#save").click((e) => { 
+            e.preventDefault();
+
+            $("#idcards").show();
+            
+            // Get Values from Form
+            let formName = $("#fname").val();
+            let formlName = $("#lname").val();
+            let formPhone = $("#ph").val();
+            let formCnic = $("#cnic").val();
+            let formImage = $("#imageToShow").attr('src');
+
+            console.log(formImage);
+            
+
+            // Set Values to Card
+            $("#Yourfname").html(formName);
+            $("#Yourlname").html(formlName);
+            $("#Yourph").html(formPhone);
+            $("#Yournic").html(formCnic);
+            $("#YourImage").attr('src',formImage);
+
+        });
+// download=  divn =>{
+
+//         function download(){
+// document.getElementById('downloadtag').click();
+
+// }}
+        printDiv = divName => {
+			
+      let printContents = document.getElementById(divName).innerHTML;
+let originalContents = document.body.innerHTML;
+
+document.body.innerHTML = printContents;
+
+window.print();
+
+document.body.innerHTML = originalContents;
+
+}
+</script>
+<script
+  src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+  crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas2image@1.0.5/canvas2image.min.js"></script>
+<script>
+  $(document).ready(function(){
+
+var element = $("#downloadMe"); // global variable
+var getCanvas; 
+  $("#btn-Preview-Image").on('click', function () {
+  html2canvas(element, {
+         onrendered: function (canvas) {
+                $("#previewImage").append(canvas);
+                getCanvas = canvas;
+             }
+         });
+});
+$("#btn-Convert-Html2Image").on('click', function () {
+    var imgageData = getCanvas.toDataURL("image/jpg");
+    // Now browser starts downloading it instead of just showing it
+    var newData = imgageData.replace(/^data:image\/jpg/, "data:application/octet-stream");
+    $("#btn-Convert-Html2Image").attr("download", "your_pic_name.jpg").attr("href", newData);
+	});
+
+});   
+       
+</script> 
+          
+         
+         
+     
+     
+    
+</body>
+
+</html>
